@@ -3,11 +3,12 @@
 # GPGPUSIM_DIR : source of GPGPUSIM to install (modify or not)
 # MIRROR_DIR : dir of spack manual mirror (recommend ~/.spack/manual_mirror)
 # MIRROR_NAME : name of spack mirror
+# make sure GPGPUSIM_DIR match GPGPUSIM
 
-GPGPUSIM=gpgpu-sim-modify@dev
+GPGPUSIM=gpgpu-sim@4.0.1
 GPGPUSIM_DIR=~/gpgpu-sim
 MIRROR_DIR=~/.spack/manual_mirror
-MIRROR_NAME=gty
+MIRROR_NAME=manual_mirror
 
 GPGPUSIM_MIRROR_DIR=${MIRROR_DIR}/$(echo ${GPGPUSIM} | sed 's/@.*//')
 GPGPUSIM_TARBALL=${GPGPUSIM_MIRROR_DIR}/$(echo ${GPGPUSIM} | sed 's/@/-/').tar.gz

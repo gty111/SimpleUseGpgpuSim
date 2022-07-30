@@ -6,7 +6,7 @@ RUNEACH=run_each.sh
 
 export CUDAVERSION=11.7
 export ARCH=sm_70
-export IFBUILD=0
+export IFBUILD=1
 export IFBACKGROUND=1
 export CONFIG_SELECT=2
 
