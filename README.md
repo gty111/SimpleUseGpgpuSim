@@ -88,5 +88,6 @@ GPGPU-SIM仿真需要在运行目录下存在config文件，且每次运行过�
 	 # **/SimpleUseGpgpuSim  确保当前目录在SimpleUseGpgpuSim
 	 . syn_gpgpu_sim.sh
 	```
+  > 注意需要运行命令 ```spack edit gpgpu-sim```并修改为[package.py](https://github.com/gty111/SimpleUseGpgpuSim/blob/master/package.py)
 - 变量的使用详见```syn_gpgpu_sim.sh```中的注释
 - [syn_gpgpu_sim.sh](https://github.com/gty111/SimpleUseGpgpuSim/blob/master/syn_gpgpu_sim.sh)
