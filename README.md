@@ -14,6 +14,12 @@
 
 - GPGPU-SIM的手动安装过程较为复杂，很容易因为依赖导致安装失败
 - **强烈推荐[通过Spack安装](https://github.com/wu-kan/wu-kan.github.io/blob/a94869ef1f1f6bf5daf9535cacbfc69912c2322b/_posts/2022-01-27-%E6%A8%A1%E6%8B%9F%E5%99%A8%20GPGPU-Sim%20%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D.md)**
+- 这里介绍参考上面的安装方法
+
+  - 在安装好spack后，运行命令```spack create gpgpu-sim ```并修改内容为[package.py](https://github.com/gty111/SimpleUseGpgpuSim/blob/master/package.py)
+  - 运行命令```spack install gpgpu-sim%gcc@7.5.0 ^ mesa~llvm```
+
+  
 
 ## 如何优雅地使用GPGPU-SIM
 
