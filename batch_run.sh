@@ -1,5 +1,5 @@
-NAME_ARR=("test1 test2")
-ARG_ARR=("")
+NAME_ARR=("test1" "test2")
+ARG_ARR=("" "")
 GPGPUSIM_ARR=("gpgpu-sim@4.0.1" ) 
 CONFIG_ARR=("RTX2060" "QV100")
 RUNEACH=run_each.sh
@@ -7,7 +7,7 @@ RUNEACH=run_each.sh
 export CUDAVERSION=11.7
 export ARCH=sm_70
 export IFBUILD=1
-export IFBACKGROUND=1
+export IFBACKGROUND=0
 export CONFIG_SELECT=2
 
 if [ ! ${#NAME_ARR[@]} -eq ${#ARG_ARR[@]} ] ; then
