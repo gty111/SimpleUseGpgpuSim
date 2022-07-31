@@ -25,7 +25,9 @@ GPGPU-SIM仿真需要在运行目录下存在config文件，且每次运行过�
 
 - 为了解决上述问题，我写了几个脚本来在GPGPU-SIM上仿真程序
 
-- 例如，你想使用```RTX2060```配置仿真，你的仿真程序为```test.cu```，你的Spack上CUDA版本为```11.7```，你需要通过nvcc编译仿真程序，你的Spack上GPGPU-SIM为```gpgpu-sim@4.0.1```，那么你需要在run.sh中修改变量```NAME=test```、```CONFIG=RTX2060```、```GPGPUSIM=gpgpu-sim@4.0.1```、```IFBUILD=1```，```CUDAVERSION=11.7```，并在终端中输入如下命令
+- 例如，你想使用```RTX2060```配置仿真，你的仿真程序为```test.cu```，你的Spack上CUDA版本为```11.7```，你需要通过nvcc编译仿真程序，你的Spack上GPGPU-SIM为```gpgpu-sim@4.0.1```，那么你需要在run.sh中修改变量```NAME=test```、```CONFIG=RTX2060```、```GPGPUSIM=gpgpu-sim@4.0.1```、```IFBUILD=1```，```CUDAVERSION=11.7```，将```test.cu```放到```${SRC}```目录下，并在终端中输入如下命令
+
+  > 或者你也可以将编译好的程序放到```${BIN}```目录下，并修改```IFBUILD=0```
 
   ```shell
   # pwd 
