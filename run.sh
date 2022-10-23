@@ -13,6 +13,8 @@
 # ARCH : nvcc -arch=${ARCH} use for build 
 # IFDEBUG : 1 use gdb and source debug in GPGPUSIM; 0 not use gdb
 # CONFIG_SELECT : 0 only build sim env 1 run 2 run rebuild env
+# IFLINKDATA : 1 link DATADIR ; 0 not link DATADIR
+# DATADIR : the data directory when the program runs
 
 NAME=test1
 CONFIG=RTX2060 # ${CONFIG}=help (to see what config gpgpusim has)
@@ -24,6 +26,8 @@ IFBACKGROUND=0
 IFDEBUG=0
 CONFIG_SELECT=2 # 0 only build sim env ;1 run ;2 run rebuild env
 ARG=
+IFLINKDATA=0
+DATADIR=
 
 OUTNAME=${NAME}
 
@@ -92,6 +96,10 @@ else
 	else
 		. $(spack location -i ${GPGPUSIM})/gpgpu-sim_distribution/setup_environment debug 2>&1 1>&/dev/null
 	fi 
+
+	if [ ${IFLINKDATA} -eq 1 ]; then
+		ln -s ${DATADIR} ${SIMPATH}
+	fi
 
 	if [ ${CONFIG_SELECT} -ne 0 ]
 	then
