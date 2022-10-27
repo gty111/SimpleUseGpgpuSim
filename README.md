@@ -38,7 +38,7 @@ GPGPU-SIM仿真需要在运行目录下存在config文件，且每次运行过�
   ```shell
   # pwd 
   # **/SimpleUseGpgpuSim  确保当前目录在SimpleUseGpgpuSim
-  . run.sh
+  bash run.sh
   ```
 
 - 此时文件(your_dir)目录结构为
@@ -74,7 +74,7 @@ GPGPU-SIM仿真需要在运行目录下存在config文件，且每次运行过�
   ```shell
   # pwd 
   # **/SimpleUseGpgpuSim  确保当前目录在SimpleUseGpgpuSim
-  . batch_run.sh
+  bash batch_run.sh
   ```
 
 - 得到的文件目录结构和单次仿真一致

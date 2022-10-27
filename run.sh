@@ -87,7 +87,7 @@ else
 		echo "build" ${NAME}.cu
 		nvcc -arch=${ARCH} --cudart shared ${SRC}/${NAME}.cu -o ${BIN}/${NAME} 
 	else 
-		echo "skip build"
+		echo "skip build from source"
 	fi
 
 	export CUDA_INSTALL_PATH=$(spack location -i cuda@${CUDAVERSION})

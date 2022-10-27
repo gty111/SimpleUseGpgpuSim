@@ -13,59 +13,14 @@
 # ARCH : nvcc -arch=${ARCH} use for build 
 # CONFIG_SELECT : 0 only build sim env 1 run 2 run rebuild env
 
-#NAME=hybridsort
-#CONFIG=QV100 # ${CONFIG}=help (to see what config gpgpusim has)
-#GPGPUSIM=gpgpu-sim-modify@origin-dev
-#CUDAVERSION=11.7
-#ARCH=sm_70
-#IFBUILD=0
-#IFBACKGROUND=1
-#CONFIG_SELECT=2 # 0 only build sim env ;1 run ;2 run rebuild env
-#ARG="r" 
-
-OUTNAME=${NAME}
-
-BIN=bin
-OUT=out
-SRC=src
-SIM=sim
-
-CURDIR=$(pwd)
-
 OUTPATH=${CURDIR}/${OUT}/${OUTNAME}_${CONFIG}_${GPGPUSIM}.txt
 SIMPATH=${CURDIR}/${SIM}/${OUTNAME}_${CONFIG}_${GPGPUSIM}
 EXEPATH=${CURDIR}/${BIN}/${NAME}
 
-[ ! -d ${SRC} ] && mkdir ${SRC}
-
-if spack -V > /dev/null ; [ $? -ne 0 ]
-then
-	echo "fail to find spack"
-elif spack load cuda@${CUDAVERSION} > /dev/null ; [ $? -ne 0 ] 
-then # test load cuda
-	echo "fail to load cuda@"${CUDAVERSION}
-elif spack location -i ${GPGPUSIM} > /dev/null ; [ $? -ne 0 ] 
-then # test GPGPUSIM exist 
-	echo ${GPGPUSIM} "not found"
-elif [ ! -e ${SRC}/${NAME}.cu ] && [ ${IFBUILD} -eq 1 ]  # test *.cu exist
-then
-	echo ${SRC}/${NAME}.cu "not exists"
-elif [ ! -e ${BIN}/${NAME} ] && [ ${IFBUILD} -eq 0 ] # test binary exist
-then
-	echo ${BIN}/${NAME} "not exists"
-elif [ ! -d $(spack location -i ${GPGPUSIM})/gpgpu-sim_distribution/configs/tested-cfgs/SM*_${CONFIG} ]
-then # test config exists
-	echo "config" ${CONFIG} "not exists"
-	ls $(spack location -i ${GPGPUSIM})/gpgpu-sim_distribution/configs/tested-cfgs
-elif [ ! -d ${SIMPATH} ] && [ ${CONFIG_SELECT} -eq 1 ]
+if [ ! -d ${SIMPATH} ] && [ ${CONFIG_SELECT} -eq 1 ]
 then # test SIMPATH exists
 	echo "build sim env first"
 else
-	#init dir
-	[ ! -d ${SIM} ] && mkdir ${SIM}
-	[ ! -d ${BIN} ] && mkdir ${BIN}
-	[ ! -d ${OUT} ] && mkdir ${OUT}
-
 	if [ ${CONFIG_SELECT} -ne 1 ]
 	then
 		echo "build sim env"
@@ -74,14 +29,6 @@ else
 			${GPGPUSIM})/gpgpu-sim_distribution/configs/tested-cfgs/SM*_${CONFIG} ${SIMPATH}
 	else
 		echo "use existed sim env"
-	fi
-
-	if [ ${IFBUILD} -eq 1 ] 
-	then
-		echo "build" ${NAME}.cu
-		nvcc -arch=${ARCH} --cudart shared ${SRC}/${NAME}.cu -o ${BIN}/${NAME} 
-	else 
-		echo "skip build"
 	fi
 
 	export CUDA_INSTALL_PATH=$(spack location -i cuda@${CUDAVERSION})
