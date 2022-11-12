@@ -36,7 +36,7 @@ elif [ ${#CONFIG_ARR[@]} -eq 0 ] ; then
 else
   # check GPGPU-SIM
   for ((i=0;i<${#GPGPUSIM_ARR[@]};i++)) ; do
-	GPGPUSIM=${GPGPUSIM_ARR[${j}]}
+	GPGPUSIM=${GPGPUSIM_ARR[${i}]}
 	if spack location -i ${GPGPUSIM} > /dev/null ; [ $? -ne 0 ] 
 	then # test GPGPUSIM exist 
 		echo ${GPGPUSIM} "not found"
